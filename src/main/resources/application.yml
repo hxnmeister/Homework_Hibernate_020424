@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:8899/rent-db
+    username: sa
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  flyway:
+    enabled: true
+    user: sa
+    password: admin
+    schemas: public
+    url: jdbc:postgresql://localhost:8899/rent-db

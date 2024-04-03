@@ -1,0 +1,19 @@
+version: '3.7'
+
+volumes:
+  rent-db:
+
+services:
+  rent-postgres:
+    container_name: rent-db
+    image: postgres:15.1-alpine
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: rent-db
+    volumes:
+      - rent-db:/var/lib/postgres/data
+    ports:
+      - "8899:5432"
+
