@@ -42,4 +42,9 @@ public class RequestForRentingApartmentServiceImp implements RequestForRentingAp
     public List<RequestForRentingApartment> saveMany(List<RequestForRentingApartment> itemsList) {
         return requestForRentingApartmentRepository.saveAll(itemsList);
     }
+
+    @Override
+    public boolean existsRequestForRentingApartmentByApartmentId(long apartmentId) {
+        return requestForRentingApartmentRepository.existsRequestForRentingApartmentByApartmentId(apartmentId);
+    }
 }

@@ -1,5 +1,6 @@
 package com.ua.spring_project.Homework_Hibernate_020424.services.implementations;
 
+import com.ua.spring_project.Homework_Hibernate_020424.models.Apartment;
 import com.ua.spring_project.Homework_Hibernate_020424.models.Client;
 import com.ua.spring_project.Homework_Hibernate_020424.models.PersonalInfo;
 import com.ua.spring_project.Homework_Hibernate_020424.services.*;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -23,6 +25,7 @@ public class MenuExecutorServiceImp implements MenuExecutorService {
     private final ApartmentService apartmentService;
     private final MenuPublisherService menuPublisherService;
     private final RentingHistoryService rentingHistoryService;
+    private final RequestForRentingApartmentService requestForRentingApartmentService;
 
     @Override
     public void executeMenu() {
@@ -55,6 +58,24 @@ public class MenuExecutorServiceImp implements MenuExecutorService {
                         break;
                     case 7:
                         editingClientData();
+                        break;
+                    case 8:
+                        findClientsByFirstAndLastNames().forEach((item) -> {
+                            System.out.println();
+                            System.out.println(item);
+                        });
+                        break;
+                    case 9:
+                        findClientsByContactPhone().forEach((item) -> {
+                            System.out.println();
+                            System.out.println(item);
+                        });
+                        break;
+                    case 10:
+                        findClientsByRequestForRentingApartment().forEach((item) -> {
+                            System.out.println();
+                            System.out.println(item);
+                        });
                         break;
                     case 0:
                         log.info(" Shutting down program...");
@@ -112,5 +133,37 @@ public class MenuExecutorServiceImp implements MenuExecutorService {
         client.setPersonalInfo(personalInfo);
 
         return clientService.update(client);
+    }
+
+    public List<Client> findClientsByFirstAndLastNames() {
+        PersonalInfo personalInfo = new PersonalInfo();
+
+        personalInfo.setFirstName(inputHelpers.getStringInputByLength(20, " Enter first name: "));
+        personalInfo.setLastName(inputHelpers.getStringInputByLength(30, " Enter last name: "));
+
+        return clientService.findClientsByFirstNameAndLastName(personalInfo.getFirstName(), personalInfo.getLastName());
+    }
+
+    public List<Client> findClientsByContactPhone() {
+        String contactPhone = inputHelpers.getStringInputByLength(13, " Enter contact phone: ");
+
+        return clientService.findClientsByContactPhone(contactPhone);
+    }
+
+    public List<Client> findClientsByRequestForRentingApartment() {
+        long apartmentId;
+        List<Apartment> apartments = apartmentService.findAll();
+
+        System.out.println(" Choose apartment ID to search client:\n");
+        apartmentService.findAll().forEach(System.out::println);
+
+        apartmentId = inputHelpers.getCorrectIdInput(apartments.stream().map(Apartment::getId).collect(Collectors.toList()),
+                " Enter ID: ");
+
+        if (requestForRentingApartmentService.existsRequestForRentingApartmentByApartmentId(apartmentId)) {
+            return clientService.findClientsByApartmentId(apartmentId);
+        }
+
+        return new ArrayList<>();
     }
 }

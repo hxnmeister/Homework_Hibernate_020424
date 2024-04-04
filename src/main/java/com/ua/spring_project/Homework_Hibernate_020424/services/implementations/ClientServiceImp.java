@@ -1,6 +1,7 @@
 package com.ua.spring_project.Homework_Hibernate_020424.services.implementations;
 
 import com.ua.spring_project.Homework_Hibernate_020424.models.Client;
+import com.ua.spring_project.Homework_Hibernate_020424.models.PersonalInfo;
 import com.ua.spring_project.Homework_Hibernate_020424.repositories.ClientRepository;
 import com.ua.spring_project.Homework_Hibernate_020424.services.ClientService;
 import lombok.RequiredArgsConstructor;
@@ -46,5 +47,20 @@ public class ClientServiceImp implements ClientService {
     @Override
     public Client findClientById(long id) {
         return clientRepository.findClientById(id);
+    }
+
+    @Override
+    public List<Client> findClientsByFirstNameAndLastName(String firstName, String lastName) {
+        return clientRepository.findClientsByFirstNameAndLastName(firstName, lastName);
+    }
+
+    @Override
+    public List<Client> findClientsByContactPhone(String contactPhone) {
+        return clientRepository.findClientsByContactPhone(contactPhone);
+    }
+
+    @Override
+    public List<Client> findClientsByApartmentId(long apartmentId) {
+        return clientRepository.findClientsByApartmentId(apartmentId);
     }
 }
