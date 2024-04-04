@@ -42,4 +42,9 @@ public class ClientServiceImp implements ClientService {
     public List<Client> saveMany(List<Client> itemsList) {
         return clientRepository.saveAll(itemsList);
     }
+
+    @Override
+    public Client findClientById(long id) {
+        return clientRepository.findClientById(id);
+    }
 }

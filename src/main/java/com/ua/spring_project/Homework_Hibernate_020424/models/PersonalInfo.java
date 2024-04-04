@@ -3,10 +3,12 @@ package com.ua.spring_project.Homework_Hibernate_020424.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor

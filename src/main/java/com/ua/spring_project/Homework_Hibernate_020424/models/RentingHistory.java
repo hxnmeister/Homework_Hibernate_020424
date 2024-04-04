@@ -41,8 +41,10 @@ public class RentingHistory {
                 " End Rent Date: " + rentEnd + "\n" +
                 " Client:\n" + client.getPersonalInfo().getFirstName() + " " +
                 client.getPersonalInfo().getLastName() + "\n" +
+                "-".repeat(15) + "\n" +
                 " Apartment:\n" +
                 "  District: " + apartment.getDistrict() +
-                "  Rooms Count: " + apartment.getRoomsCount();
+                "  Rooms Count: " + apartment.getRoomsCount() +
+                "=".repeat(25) + "\n";
     }
 }
