@@ -35,6 +35,13 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
         WHERE rra.apartment_id=:apartmentId
     """;
 
+    String SELECT_ALL_CLIENTS_BY_RENTING_DATE_DURING_MONTH = """
+        SELECT c.*
+        FROM renting_history rh JOIN clients c
+        ON c.id=rh.client_id
+        WHERE rh.rent_begin BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '1 MONTH'
+    """;
+
     Client findClientById(long id);
 
     @Query(value = SELECT_ALL_CLIENTS_BY_FIRST_AND_LAST_NAMES, nativeQuery = true)
@@ -45,4 +52,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     @Query(value = SELECT_ALL_CLIENTS_BY_APARTMENT_ID, nativeQuery = true)
     List<Client> findClientsByApartmentId(@Param("apartmentId") long apartmentId);
+
+    @Query(value = SELECT_ALL_CLIENTS_BY_RENTING_DATE_DURING_MONTH, nativeQuery = true)
+    List<Client> findClientsByRentingDateDuringMonth();
 }

@@ -63,4 +63,9 @@ public class ClientServiceImp implements ClientService {
     public List<Client> findClientsByApartmentId(long apartmentId) {
         return clientRepository.findClientsByApartmentId(apartmentId);
     }
+
+    @Override
+    public List<Client> findClientsByRentingDateDuringMonth() {
+        return clientRepository.findClientsByRentingDateDuringMonth();
+    }
 }

@@ -94,12 +94,20 @@ public class RentDBInitializer {
         rentDBInitService.saveApartments(apartments);
     }
 
-    public void createRandomRentingHistory(int countOfRecords) {
+    public void createRandomRentingHistory() {
         List<Client> clients = rentDBInitService.findAllClients();
         List<Apartment> apartments = rentDBInitService.findAllApartments();
         List<RentingHistory> rentingHistories = new ArrayList<>();
 
-        for (int i = 0; i < countOfRecords; i++) {
+        rentingHistories.add(RentingHistory
+                .builder()
+                .rentBegin(Date.valueOf(LocalDate.now()))
+                .rentEnd(Date.valueOf(LocalDate.now().plusMonths(1)))
+                .client(clients.remove(ThreadLocalRandom.current().nextInt(clients.size())))
+                .apartment(apartments.remove(ThreadLocalRandom.current().nextInt(apartments.size())))
+                .build());
+
+        for (int i = 0; i < clients.size(); i++) {
             int randomDays = ThreadLocalRandom.current().nextInt(10, 365);
             LocalDate beginDate = getRandomDate();
             LocalDate endDate = beginDate.plusDays(randomDays);
@@ -108,8 +116,8 @@ public class RentDBInitializer {
                     .builder()
                     .rentBegin(Date.valueOf(beginDate))
                     .rentEnd(Date.valueOf(endDate))
-                    .client(clients.get(ThreadLocalRandom.current().nextInt(clients.size())))
-                    .apartment(apartments.get(ThreadLocalRandom.current().nextInt(apartments.size())))
+                    .client(clients.remove(ThreadLocalRandom.current().nextInt(clients.size())))
+                    .apartment(apartments.remove(ThreadLocalRandom.current().nextInt(apartments.size())))
                     .build());
         }
 

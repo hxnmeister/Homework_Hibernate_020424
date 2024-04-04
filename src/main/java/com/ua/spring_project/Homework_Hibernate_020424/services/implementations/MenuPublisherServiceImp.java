@@ -19,6 +19,7 @@ public class MenuPublisherServiceImp implements MenuPublisherService {
         menu.append("  8. Find clients by first and last names;\n");
         menu.append("  9. Find clients by contact phone;\n");
         menu.append("  10. Find clients by request for renting;\n");
+        menu.append("  11. Find clients that rented apartment during last month;\n");
         menu.append("  0. Exit program;");
 
         return menu.toString();

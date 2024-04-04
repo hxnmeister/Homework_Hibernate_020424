@@ -14,4 +14,6 @@ public interface ClientService extends CRUDInterface<Client> {
     List<Client> findClientsByContactPhone(String contactPhone);
 
     List<Client> findClientsByApartmentId(long apartmentId);
+
+    List<Client> findClientsByRentingDateDuringMonth();
 }

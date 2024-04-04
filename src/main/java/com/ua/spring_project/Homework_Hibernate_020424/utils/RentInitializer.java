@@ -19,7 +19,7 @@ public class RentInitializer {
             rentDBInitializer.createRandomLandlords(5);
             rentDBInitializer.createRandomClients(5);
             rentDBInitializer.createRandomApartments(4, 6, 1000.0);
-            rentDBInitializer.createRandomRentingHistory(7);
+            rentDBInitializer.createRandomRentingHistory();
             rentDBInitializer.createRandomRequestForRentingApartment(5);
         }
         catch (RuntimeException | IOException e) {

@@ -77,6 +77,10 @@ public class MenuExecutorServiceImp implements MenuExecutorService {
                             System.out.println(item);
                         });
                         break;
+                    case 11:
+                        System.out.println(" Clients that rented apartments during this month:\n");
+                        clientService.findClientsByRentingDateDuringMonth().forEach(System.out::println);
+                        break;
                     case 0:
                         log.info(" Shutting down program...");
                         System.exit(0);
