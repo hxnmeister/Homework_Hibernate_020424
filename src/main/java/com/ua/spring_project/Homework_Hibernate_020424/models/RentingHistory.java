@@ -43,8 +43,8 @@ public class RentingHistory {
                 client.getPersonalInfo().getLastName() + "\n" +
                 "-".repeat(15) + "\n" +
                 " Apartment:\n" +
-                "  District: " + apartment.getDistrict() +
-                "  Rooms Count: " + apartment.getRoomsCount() +
+                "  District: " + apartment.getDistrict() + "\n" +
+                "  Rooms Count: " + apartment.getRoomsCount() + "\n" +
                 "=".repeat(25) + "\n";
     }
 }

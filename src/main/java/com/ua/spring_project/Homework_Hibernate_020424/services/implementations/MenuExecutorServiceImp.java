@@ -78,8 +78,16 @@ public class MenuExecutorServiceImp implements MenuExecutorService {
                         });
                         break;
                     case 11:
-                        System.out.println(" Clients that rented apartments during this month:\n");
-                        clientService.findClientsByRentingDateDuringMonth().forEach(System.out::println);
+                        displayClients(clientService.findClientsByRentingDateBeginDuringMonth(), " Clients that rented apartments during month:\n");
+                        break;
+                    case 12:
+                        displayClients(clientService.findClientsByRentingDateEndDuringMonth(), " Clients with expired rent during month:\n");
+                        break;
+                    case 13:
+                        displayClients(clientService.findClientsByRentingDateRangeLessThanMonth(), " Clients that rented apartment less than for a month:\n");
+                        break;
+                    case 14:
+                        displayClients(clientService.findClientsByRentingDateMoreThanYear(), " Clients that rented apartment more than for a year:\n");
                         break;
                     case 0:
                         log.info(" Shutting down program...");
@@ -95,6 +103,11 @@ public class MenuExecutorServiceImp implements MenuExecutorService {
                 log.warn(e.getMessage());
             }
         }
+    }
+
+    public void displayClients(List<Client> clients, String messageToUser) {
+        System.out.println(messageToUser);
+        clients.forEach(System.out::println);
     }
 
     public Client addingClientToDB() {

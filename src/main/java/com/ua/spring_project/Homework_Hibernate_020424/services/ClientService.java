@@ -15,5 +15,12 @@ public interface ClientService extends CRUDInterface<Client> {
 
     List<Client> findClientsByApartmentId(long apartmentId);
 
-    List<Client> findClientsByRentingDateDuringMonth();
+    List<Client> findClientsByRentingDateBeginDuringMonth();
+
+    List<Client> findClientsByRentingDateEndDuringMonth();
+
+    List<Client> findClientsByRentingDateRangeLessThanMonth();
+
+    List<Client> findClientsByRentingDateMoreThanYear();
+
 }

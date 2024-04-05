@@ -1,7 +1,6 @@
 package com.ua.spring_project.Homework_Hibernate_020424.services.implementations;
 
 import com.ua.spring_project.Homework_Hibernate_020424.models.Client;
-import com.ua.spring_project.Homework_Hibernate_020424.models.PersonalInfo;
 import com.ua.spring_project.Homework_Hibernate_020424.repositories.ClientRepository;
 import com.ua.spring_project.Homework_Hibernate_020424.services.ClientService;
 import lombok.RequiredArgsConstructor;
@@ -65,7 +64,22 @@ public class ClientServiceImp implements ClientService {
     }
 
     @Override
-    public List<Client> findClientsByRentingDateDuringMonth() {
-        return clientRepository.findClientsByRentingDateDuringMonth();
+    public List<Client> findClientsByRentingDateBeginDuringMonth() {
+        return clientRepository.findClientsByRentingDateBeginDuringMonth();
+    }
+
+    @Override
+    public List<Client> findClientsByRentingDateEndDuringMonth() {
+        return clientRepository.findClientsByRentingDateEndDuringMonth();
+    }
+
+    @Override
+    public List<Client> findClientsByRentingDateRangeLessThanMonth() {
+        return clientRepository.findClientsByRentingDateRangeLessThanMonth();
+    }
+
+    @Override
+    public List<Client> findClientsByRentingDateMoreThanYear() {
+        return clientRepository.findClientsByRentingDateMoreThanYear();
     }
 }

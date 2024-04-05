@@ -18,7 +18,7 @@ public class RentInitializer {
 
             rentDBInitializer.createRandomLandlords(5);
             rentDBInitializer.createRandomClients(5);
-            rentDBInitializer.createRandomApartments(4, 6, 1000.0);
+            rentDBInitializer.createRandomApartments(4, 7, 1000.0);
             rentDBInitializer.createRandomRentingHistory();
             rentDBInitializer.createRandomRequestForRentingApartment(5);
         }
