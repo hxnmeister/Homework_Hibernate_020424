@@ -4,6 +4,8 @@ import com.ua.spring_project.Homework_Hibernate_020424.models.RentingHistory;
 import com.ua.spring_project.Homework_Hibernate_020424.repositories.RentingHistoryRepository;
 import com.ua.spring_project.Homework_Hibernate_020424.services.RentingHistoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,5 +43,10 @@ public class RentingHistoryServiceImp implements RentingHistoryService {
     @Override
     public List<RentingHistory> saveMany(List<RentingHistory> itemsList) {
         return rentingHistoryRepository.saveAll(itemsList);
+    }
+
+    @Override
+    public Page<RentingHistory> findAll(Pageable pageable) {
+        return rentingHistoryRepository.findAll(pageable);
     }
 }

@@ -4,6 +4,8 @@ import com.ua.spring_project.Homework_Hibernate_020424.models.Landlord;
 import com.ua.spring_project.Homework_Hibernate_020424.repositories.LandlordRepository;
 import com.ua.spring_project.Homework_Hibernate_020424.services.LandlordService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,5 +43,10 @@ public class LandlordServiceImp implements LandlordService {
     @Override
     public List<Landlord> saveMany(List<Landlord> itemsList) {
         return landlordRepository.saveAll(itemsList);
+    }
+
+    @Override
+    public Page<Landlord> findAll(Pageable pageable) {
+        return landlordRepository.findAll(pageable);
     }
 }

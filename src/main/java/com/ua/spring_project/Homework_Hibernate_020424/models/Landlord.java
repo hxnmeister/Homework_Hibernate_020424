@@ -1,5 +1,6 @@
 package com.ua.spring_project.Homework_Hibernate_020424.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +22,7 @@ public class Landlord {
     @Embedded
     private PersonalInfo personalInfo;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "landlord")
     private List<Apartment> apartments;
 
