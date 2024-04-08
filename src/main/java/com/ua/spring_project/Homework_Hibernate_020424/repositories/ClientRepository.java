@@ -3,6 +3,7 @@ package com.ua.spring_project.Homework_Hibernate_020424.repositories;
 import com.ua.spring_project.Homework_Hibernate_020424.models.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface ClientRepository extends JpaRepository<Client, Long> {
+public interface ClientRepository extends PagingAndSortingRepository<Client, Long>, JpaRepository<Client, Long> {
     String SELECT_ALL_CLIENTS_BY_FIRST_AND_LAST_NAMES = """
         SELECT *
         FROM clients
@@ -64,7 +65,8 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     Client findClientById(long id);
 
     @Query(value = SELECT_ALL_CLIENTS_BY_FIRST_AND_LAST_NAMES, nativeQuery = true)
-    List<Client> findClientsByFirstNameAndLastName(@Param("firstName") String firstName, @Param("lastName") String lastName);
+    List<Client> findClientsByFirstNameAndLastName(@Param("firstName") String firstName,
+                                                   @Param("lastName") String lastName);
 
     @Query(value = SELECT_ALL_CLIENTS_BY_CONTACT_PHONE, nativeQuery = true)
     List<Client> findClientsByContactPhone(@Param("contactPhone") String contactPhone);

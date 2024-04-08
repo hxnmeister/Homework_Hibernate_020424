@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class AppStarter {
-    private final MenuExecutorService menuExecutorService;
     private final RentInitializer rentInitializer;
 
     @Bean
@@ -21,7 +20,6 @@ public class AppStarter {
 
         return args -> {
             rentInitializer.initDB();
-            menuExecutorService.executeMenu();
         };
     }
 }

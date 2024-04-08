@@ -85,7 +85,7 @@ public class RentDBInitializer {
             apartments.add(Apartment
                     .builder()
                     .roomsCount(ThreadLocalRandom.current().nextInt(MIN_ROOMS ,maxRooms))
-                    .district("DISTRICT #" + ThreadLocalRandom.current().nextInt(100))
+                    .district("DISTRICT №" + ThreadLocalRandom.current().nextInt(100))
                     .price(BigDecimal.valueOf(ThreadLocalRandom.current().nextDouble()).multiply(MAX_PRICE.subtract(MIN_PRICE)))
                     .landlord(landlords.get(ThreadLocalRandom.current().nextInt(landlords.size())))
                     .build());

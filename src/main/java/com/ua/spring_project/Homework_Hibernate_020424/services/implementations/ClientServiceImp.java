@@ -4,6 +4,8 @@ import com.ua.spring_project.Homework_Hibernate_020424.models.Client;
 import com.ua.spring_project.Homework_Hibernate_020424.repositories.ClientRepository;
 import com.ua.spring_project.Homework_Hibernate_020424.services.ClientService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -81,5 +83,10 @@ public class ClientServiceImp implements ClientService {
     @Override
     public List<Client> findClientsByRentingDateMoreThanYear() {
         return clientRepository.findClientsByRentingDateMoreThanYear();
+    }
+
+    @Override
+    public Page<Client> findAll(Pageable pageable) {
+        return clientRepository.findAll(pageable);
     }
 }
