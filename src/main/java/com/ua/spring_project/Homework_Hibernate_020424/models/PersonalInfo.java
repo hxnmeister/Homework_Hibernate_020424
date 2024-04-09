@@ -22,6 +22,20 @@ public class PersonalInfo {
     @Column(name = "contact_phone")
     private String contactPhone;
 
+    public static PersonalInfo personalInfoExtractor(PersonalInfo currentPI, PersonalInfo previousPI) {
+        if (currentPI.getFirstName() != null && !currentPI.getFirstName().isEmpty()) {
+            previousPI.setFirstName(currentPI.getFirstName());
+        }
+        if (currentPI.getLastName() != null && !currentPI.getLastName().isEmpty()) {
+            previousPI.setLastName(currentPI.getLastName());
+        }
+        if (currentPI.getContactPhone() != null && !currentPI.getContactPhone().isEmpty()) {
+            previousPI.setContactPhone(currentPI.getContactPhone());
+        }
+
+        return previousPI;
+    }
+
     @Override
     public String toString() {
         return " Name: " + firstName + " " + lastName + "\n" +

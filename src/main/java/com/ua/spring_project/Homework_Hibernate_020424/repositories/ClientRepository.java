@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -62,28 +63,28 @@ public interface ClientRepository extends PagingAndSortingRepository<Client, Lon
         WHERE (EXTRACT(YEAR FROM rh.rent_end) - EXTRACT(YEAR FROM rh.rent_begin)) > 1
     """;
 
-    Client findClientById(long id);
+    Optional<Client> findClientById(Long id);
 
     @Query(value = SELECT_ALL_CLIENTS_BY_FIRST_AND_LAST_NAMES, nativeQuery = true)
-    List<Client> findClientsByFirstNameAndLastName(@Param("firstName") String firstName,
-                                                   @Param("lastName") String lastName);
+    Optional<List<Client>> findClientsByFirstNameAndLastName(@Param("firstName") String firstName,
+                                                             @Param("lastName") String lastName);
 
     @Query(value = SELECT_ALL_CLIENTS_BY_CONTACT_PHONE, nativeQuery = true)
-    List<Client> findClientsByContactPhone(@Param("contactPhone") String contactPhone);
+    Optional<List<Client>> findClientsByContactPhone(@Param("contactPhone") String contactPhone);
 
     @Query(value = SELECT_ALL_CLIENTS_BY_APARTMENT_ID, nativeQuery = true)
-    List<Client> findClientsByApartmentId(@Param("apartmentId") long apartmentId);
+    Optional<List<Client>> findClientsByApartmentId(@Param("apartmentId") long apartmentId);
 
     @Query(value = SELECT_ALL_CLIENTS_BY_RENTING_DATE_DURING_MONTH, nativeQuery = true)
-    List<Client> findClientsByRentingDateBeginDuringMonth();
+    Optional<List<Client>> findClientsByRentingDateBeginDuringMonth();
 
     @Query(value = SELECT_ALL_CLIENTS_BY_RENTING_END_DURING_MONTH, nativeQuery = true)
-    List<Client> findClientsByRentingDateEndDuringMonth();
+    Optional<List<Client>> findClientsByRentingDateEndDuringMonth();
 
     @Query(value = SELECT_ALL_CLIENTS_BY_RENTING_DATE_RANGE_LESS_THAN_MONTH, nativeQuery = true)
-    List<Client> findClientsByRentingDateRangeLessThanMonth();
+    Optional<List<Client>> findClientsByRentingDateRangeLessThanMonth();
 
     @Query(value = SELECT_ALL_CLIENTS_BY_RENTING_DATE_MORE_THAN_YEAR, nativeQuery = true)
-    List<Client> findClientsByRentingDateMoreThanYear();
+    Optional<List<Client>> findClientsByRentingDateMoreThanYear();
 
 }

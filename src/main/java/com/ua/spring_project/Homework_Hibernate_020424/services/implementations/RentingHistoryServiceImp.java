@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -48,5 +49,10 @@ public class RentingHistoryServiceImp implements RentingHistoryService {
     @Override
     public Page<RentingHistory> findAll(Pageable pageable) {
         return rentingHistoryRepository.findAll(pageable);
+    }
+
+    @Override
+    public Optional<RentingHistory> findRentingHistoryById(Long id) {
+        return rentingHistoryRepository.findRentingHistoryById(id);
     }
 }

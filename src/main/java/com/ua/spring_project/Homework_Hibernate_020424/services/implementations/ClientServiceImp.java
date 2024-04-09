@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -46,42 +47,42 @@ public class ClientServiceImp implements ClientService {
     }
 
     @Override
-    public Client findClientById(long id) {
+    public Optional<Client> findClientById(long id) {
         return clientRepository.findClientById(id);
     }
 
     @Override
-    public List<Client> findClientsByFirstNameAndLastName(String firstName, String lastName) {
+    public Optional<List<Client>> findClientsByFirstNameAndLastName(String firstName, String lastName) {
         return clientRepository.findClientsByFirstNameAndLastName(firstName, lastName);
     }
 
     @Override
-    public List<Client> findClientsByContactPhone(String contactPhone) {
+    public Optional<List<Client>> findClientsByContactPhone(String contactPhone) {
         return clientRepository.findClientsByContactPhone(contactPhone);
     }
 
     @Override
-    public List<Client> findClientsByApartmentId(long apartmentId) {
+    public Optional<List<Client>> findClientsByApartmentId(long apartmentId) {
         return clientRepository.findClientsByApartmentId(apartmentId);
     }
 
     @Override
-    public List<Client> findClientsByRentingDateBeginDuringMonth() {
+    public Optional<List<Client>> findClientsByRentingDateBeginDuringMonth() {
         return clientRepository.findClientsByRentingDateBeginDuringMonth();
     }
 
     @Override
-    public List<Client> findClientsByRentingDateEndDuringMonth() {
+    public Optional<List<Client>> findClientsByRentingDateEndDuringMonth() {
         return clientRepository.findClientsByRentingDateEndDuringMonth();
     }
 
     @Override
-    public List<Client> findClientsByRentingDateRangeLessThanMonth() {
+    public Optional<List<Client>> findClientsByRentingDateRangeLessThanMonth() {
         return clientRepository.findClientsByRentingDateRangeLessThanMonth();
     }
 
     @Override
-    public List<Client> findClientsByRentingDateMoreThanYear() {
+    public Optional<List<Client>> findClientsByRentingDateMoreThanYear() {
         return clientRepository.findClientsByRentingDateMoreThanYear();
     }
 

@@ -9,4 +9,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface LandlordRepository extends PagingAndSortingRepository<Landlord, Long>, JpaRepository<Landlord, Long> {
+    Landlord findLandlordById(Long id);
 }

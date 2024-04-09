@@ -10,7 +10,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -62,5 +64,25 @@ public class ApartmentServiceImp implements ApartmentService {
                 apartmentDTO.getLandlordLastName(),
                 PageRequest.of(apartmentDTO.getPage(), apartmentDTO.getPageSize())
         );
+    }
+
+    @Override
+    public Optional<Apartment> findApartmentById(Long id) {
+        return apartmentRepository.findApartmentById(id);
+    }
+
+    @Override
+    public BigDecimal getAvgPrice() {
+        return apartmentRepository.getAvgPrice();
+    }
+
+    @Override
+    public BigDecimal getMaxPrice() {
+        return apartmentRepository.getMaxPrice();
+    }
+
+    @Override
+    public BigDecimal getMinPrice() {
+        return apartmentRepository.getMinPrice();
     }
 }

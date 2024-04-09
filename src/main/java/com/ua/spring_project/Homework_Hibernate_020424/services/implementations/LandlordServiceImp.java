@@ -49,4 +49,9 @@ public class LandlordServiceImp implements LandlordService {
     public Page<Landlord> findAll(Pageable pageable) {
         return landlordRepository.findAll(pageable);
     }
+
+    @Override
+    public Landlord findLandlordById(Long id) {
+        return landlordRepository.findLandlordById(id);
+    }
 }

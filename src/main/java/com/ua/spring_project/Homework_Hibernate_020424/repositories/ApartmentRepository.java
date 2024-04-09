@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -26,6 +27,23 @@ public interface ApartmentRepository extends PagingAndSortingRepository<Apartmen
         (lan.last_name=:landlordLN OR :landlordLN IS NULL)
     """;
 
+    String SELECT_AVG_PRICE = """
+        SELECT AVG(CAST(price AS NUMERIC))
+        FROM apartments
+    """;
+
+    String SELECT_MAX_PRICE = """
+        SELECT MAX(price)
+        FROM apartments
+    """;
+
+    String SELECT_MIN_PRICE = """
+        SELECT MIN(price)
+        FROM apartments
+    """;
+
+    Optional<Apartment> findApartmentById(Long id);
+
     @Query(value = SELECT_APARTMENTS_BY_FILTERS, nativeQuery = true)
     Page<Apartment> findByApartmentFilters(@Param("roomsCount") int roomsCount,
                                            @Param("district") String district,
@@ -33,4 +51,13 @@ public interface ApartmentRepository extends PagingAndSortingRepository<Apartmen
                                            @Param("landlordFN") String landlordFirstName,
                                            @Param("landlordLN") String landlordLastName,
                                            Pageable pageable);
+
+    @Query(value = SELECT_AVG_PRICE, nativeQuery = true)
+    BigDecimal getAvgPrice();
+
+    @Query(value = SELECT_MAX_PRICE, nativeQuery = true)
+    BigDecimal getMaxPrice();
+
+    @Query(value = SELECT_MIN_PRICE, nativeQuery = true)
+    BigDecimal getMinPrice();
 }

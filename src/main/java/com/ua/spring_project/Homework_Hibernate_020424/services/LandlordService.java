@@ -6,4 +6,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface LandlordService extends CRUDInterface<Landlord> {
     Page<Landlord> findAll(Pageable pageable);
+
+    Landlord findLandlordById(Long id);
 }

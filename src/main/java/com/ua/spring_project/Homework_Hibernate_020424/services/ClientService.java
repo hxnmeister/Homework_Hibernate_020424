@@ -7,24 +7,25 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ClientService extends CRUDInterface<Client> {
-    Client findClientById(long id);
+    Optional<Client> findClientById(long id);
 
     Page<Client> findAll(Pageable pageable);
 
-    List<Client> findClientsByFirstNameAndLastName(String firstName, String lastName);
+    Optional<List<Client>> findClientsByFirstNameAndLastName(String firstName, String lastName);
 
-    List<Client> findClientsByContactPhone(String contactPhone);
+    Optional<List<Client>> findClientsByContactPhone(String contactPhone);
 
-    List<Client> findClientsByApartmentId(long apartmentId);
+    Optional<List<Client>> findClientsByApartmentId(long apartmentId);
 
-    List<Client> findClientsByRentingDateBeginDuringMonth();
+    Optional<List<Client>> findClientsByRentingDateBeginDuringMonth();
 
-    List<Client> findClientsByRentingDateEndDuringMonth();
+    Optional<List<Client>> findClientsByRentingDateEndDuringMonth();
 
-    List<Client> findClientsByRentingDateRangeLessThanMonth();
+    Optional<List<Client>> findClientsByRentingDateRangeLessThanMonth();
 
-    List<Client> findClientsByRentingDateMoreThanYear();
+    Optional<List<Client>> findClientsByRentingDateMoreThanYear();
 
 }
